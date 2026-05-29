@@ -11,7 +11,12 @@ abstract class Moneda implements Comparable<Moneda>{
     /**
      * Constructor por defecto para una moneda.
      */
+    private static int serie = 1000;
+    private int serieUnica;
+
     public Moneda(){
+        this.serieUnica=serie;
+        serie++;
     }
     
     /**
@@ -19,8 +24,8 @@ abstract class Moneda implements Comparable<Moneda>{
      * 
      * @return la moneda actual
      */
-    public Moneda getSerie(){
-        return this;
+    public int getSerie(){
+        return this.serieUnica;
     }
     
     /**
@@ -30,5 +35,9 @@ abstract class Moneda implements Comparable<Moneda>{
      */
     public abstract int getValor();
 
+    @Override
+    public String toString(){
+        return "Valor: " + this.getValor() + "Serie: " + this.getSerie();
+    }
     
 }

@@ -11,10 +11,10 @@ public class Super8 extends Dulce{
     /**
      * Constructor que inicializa un Super8 con su numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico del producto
      */
-    public Super8(int serie){
-        super(serie);
+    public Super8(){
+        super();
     }
     
     /**

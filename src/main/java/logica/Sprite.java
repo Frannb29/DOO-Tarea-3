@@ -11,10 +11,10 @@ class Sprite extends Bebida {
     /**
      * Constructor que inicializa un Sprite con su numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico del producto
      */
-    public Sprite(int serie){
-        super(serie);
+    public Sprite(){
+        super();
     }
     
     /**

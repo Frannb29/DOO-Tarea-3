@@ -28,7 +28,8 @@ class Comprador {
             this.vuelto=0;
 
             try{
-                Producto b = exp.comprarProducto(m,cual);
+                exp.comprarProducto(m,cual);
+                Producto b = exp.getProducto();
                 if(b!=null){
                     this.sonido=b.consumir();
                 }

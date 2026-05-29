@@ -8,14 +8,16 @@ package logica;
  * @version 1.0
  */
 abstract class Producto {
+    private static int nroSerie=100;
     private int serie;
     /**
      * Constructor que inicializa un producto con un numero de serie.
      * 
      * @param serie el numero de serie del producto
      */
-    public Producto(int serie){
-        this.serie=serie;
+    public Producto(){
+        this.serie=nroSerie;
+        nroSerie++;
     }
 
     /**

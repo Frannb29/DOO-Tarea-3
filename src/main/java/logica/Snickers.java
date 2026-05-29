@@ -11,10 +11,10 @@ public class Snickers extends Dulce{
     /**
      * Constructor que inicializa un Snickers con su numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico del producto
      */
-    public Snickers(int serie){
-        super(serie);
+    public Snickers(){
+        super();
     }
     
     /**

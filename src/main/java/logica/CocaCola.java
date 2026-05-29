@@ -11,10 +11,10 @@ public class CocaCola extends Bebida {
     /**
      * Constructor que inicializa una Coca Cola con su numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico del producto
      */
-    public CocaCola(int serie){
-        super(serie);
+    public CocaCola(){
+        super();
     }
     
     /**

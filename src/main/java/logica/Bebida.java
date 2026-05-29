@@ -11,10 +11,10 @@ public abstract class Bebida extends Producto{
     /**
      * Constructor que inicializa una bebida con un numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico otorgado por Producto
      */
-    public Bebida(int serie){
-        super(serie);
+    public Bebida(){
+        super();
     }
     
     /**

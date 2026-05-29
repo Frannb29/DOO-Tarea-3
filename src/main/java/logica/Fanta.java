@@ -11,10 +11,10 @@ public class Fanta extends Bebida{
     /**
      * Constructor que inicializa una Fanta con su numero de serie.
      * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico del producto
      */
-    public Fanta(int serie){
-        super(serie);
+    public Fanta(){
+        super();
     }
     
     /**

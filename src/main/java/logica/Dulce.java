@@ -10,11 +10,10 @@ package logica;
 public abstract class Dulce extends Producto{
     /**
      * Constructor que inicializa un dulce con un numero de serie.
-     * 
-     * @param serie el numero de serie del producto
+     * Numero de serie unico otorgado por Producto
      */
-    public Dulce(int serie){
-        super(serie);
+    public Dulce(){
+        super();
     }
     
     /**

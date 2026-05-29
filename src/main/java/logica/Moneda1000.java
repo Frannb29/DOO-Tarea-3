@@ -36,14 +36,4 @@ class Moneda1000 extends Moneda {
         return Integer.compare(1000, m.getValor());
     }
 
-    /**
-     * Devuelve una representacion en cadena de la moneda.
-     * 
-     * @return una cadena con el valor y serie(su valor hash)de la moneda
-     */
-
-    @Override
-    public String toString(){
-        return "Valor: "+1000+", Serie: "+this.hashCode();
-    }
 }

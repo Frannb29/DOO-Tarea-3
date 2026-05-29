@@ -14,6 +14,7 @@ class Expendedor {
     private Deposito<Dulce> super8;
     private Deposito<Dulce> snickers;
     private Deposito<Moneda> monVu;
+    private Producto DepositoVuelto;
 
     /**
      * Constructor que inicializa la maquina expendedora con depositos de productos y monedas.
@@ -31,12 +32,13 @@ class Expendedor {
 
         for (int i = 0; i < cant; i++) {
 
-            coca.add(new CocaCola(100+i));
-            sprite.add(new Sprite(200+i));
-            fanta.add(new Fanta(300+i));
-            super8.add(new Super8(400+i));
-            snickers.add(new Snickers(500+i));
+            coca.add(new CocaCola());
+            sprite.add(new Sprite());
+            fanta.add(new Fanta());
+            super8.add(new Super8());
+            snickers.add(new Snickers());
         }
+        this.DepositoVuelto=null;
     }
 
     /**
@@ -50,7 +52,7 @@ class Expendedor {
      * @throws PagoInsuficienteException si el valor de la moneda es menor al precio
      * @throws NoHayProductoException si no hay producto disponible en el deposito
      */
-    public Producto comprarProducto(Moneda m, ValorProducto select) throws PagoIncorrectoException,
+    public void comprarProducto(Moneda m, ValorProducto select) throws PagoIncorrectoException,
         PagoInsuficienteException, NoHayProductoException{
 
         Producto p=null;
@@ -116,8 +118,12 @@ class Expendedor {
             for (int i = 0; i < dif; i++) {
                 monVu.add(new Moneda100());
             }
-            return p;
         }
+        DepositoVuelto=p;
+    }
+
+    public Producto getProducto(){
+        return DepositoVuelto;
     }
 
 
