@@ -7,7 +7,7 @@ package logica;
  * @author Tarea DOO
  * @version 1.0
  */
-abstract class Producto {
+public abstract class Producto {
     private static int nroSerie=100;
     private int serie;
     /**

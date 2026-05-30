@@ -7,7 +7,7 @@ package logica;
  * @author Tarea DOO
  * @version 1.0
  */
-class Sprite extends Bebida {
+public class Sprite extends Bebida {
     /**
      * Constructor que inicializa un Sprite con su numero de serie.
      * 

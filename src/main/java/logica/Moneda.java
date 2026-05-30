@@ -7,7 +7,7 @@ package logica;
  * @author Tarea DOO
  * @version 1.0
  */
-abstract class Moneda implements Comparable<Moneda>{
+public abstract class Moneda implements Comparable<Moneda>{
     /**
      * Constructor por defecto para una moneda.
      */

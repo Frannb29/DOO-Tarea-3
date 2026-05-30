@@ -7,7 +7,7 @@ package logica;
  * @author Tarea DOO
  * @version 1.0
  */
-class Moneda1000 extends Moneda {
+public class Moneda1000 extends Moneda {
     /**
      * Constructor que inicializa una moneda de valor 1000.
      */
