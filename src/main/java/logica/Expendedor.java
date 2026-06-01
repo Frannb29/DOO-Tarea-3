@@ -7,13 +7,14 @@ package logica;
  * @author Tarea DOO
  * @version 1.0
  */
-class Expendedor {
-    private Deposito<Bebida> coca;
-    private Deposito<Bebida> sprite;
-    private Deposito<Bebida> fanta;
-    private Deposito<Dulce> super8;
-    private Deposito<Dulce> snickers;
+public class Expendedor {
+    private Deposito<CocaCola> coca;
+    private Deposito<Sprite> sprite;
+    private Deposito<Fanta> fanta;
+    private Deposito<Super8> super8;
+    private Deposito<Snickers> snickers;
     private Deposito<Moneda> monVu;
+    private Deposito<Moneda> monedasPago;
     private Producto DepositoVuelto;
 
     /**
@@ -23,12 +24,13 @@ class Expendedor {
      * @param cant la cantidad de cada tipo de producto a llenar en los depositos
      */
     public Expendedor(int cant) {
-        coca=new Deposito<Bebida>();
-        sprite=new Deposito<Bebida>();
-        fanta=new Deposito<Bebida>();
-        super8=new Deposito<Dulce>();
-        snickers=new Deposito<Dulce>();
-        monVu=new Deposito<Moneda>();
+        coca=new Deposito<>();
+        sprite=new Deposito<>();
+        fanta=new Deposito<>();
+        super8=new Deposito<>();
+        snickers=new Deposito<>();
+        monVu=new Deposito<>();
+        monedasPago=new Deposito<>();
 
         for (int i = 0; i < cant; i++) {
 
@@ -126,8 +128,6 @@ class Expendedor {
         return DepositoVuelto;
     }
 
-
-
     /**
      * Obtiene y extrae una moneda de vuelto del deposito de monedas.
      * 
@@ -135,5 +135,25 @@ class Expendedor {
      */
     public Moneda getVuelto(){
         return monVu.get();
+    }
+
+    public Deposito<CocaCola> getDepoCoca(){
+        return coca;
+    }
+
+    public Deposito<Sprite> getDepoSprite(){
+        return sprite;
+    }
+
+    public Deposito<Fanta> getDepoFanta(){
+        return fanta;
+    }
+
+    public Deposito<Super8> getDepoSuper8(){
+        return super8;
+    }
+
+    public Deposito<Snickers> getDepoSnickers(){
+        return snickers;
     }
 }
