@@ -25,11 +25,11 @@ public class PanelExpendedor extends JPanel {
         this.x=x;
         this.y=y;
 
-        this.panelCoca = new PanelDeposito(expendedor.getDepoCoca(), x + 20, y + 25, true, 1);
-        this.panelSprite = new PanelDeposito(expendedor.getDepoSprite(), x + 50, y + 25, true, 1);
-        this.panelFanta = new PanelDeposito(expendedor.getDepoFanta(), x + 80, y + 25, true, 1);
-        this.panelSuper8 = new PanelDeposito(expendedor.getDepoSuper8(), x + 110, y + 25, true, 1);
-        this.panelSnickers = new PanelDeposito(expendedor.getDepoSnickers(), x + 145, y + 25, true, 1);
+        this.panelCoca = new PanelDeposito(expendedor.getDepoCoca(), x + 20, y + 20, false, 1);
+        this.panelSprite = new PanelDeposito(expendedor.getDepoSprite(), x + 20, y + 90, false, 1);
+        this.panelFanta = new PanelDeposito(expendedor.getDepoFanta(), x + 20, y + 160, false, 1);
+        this.panelSuper8 = new PanelDeposito(expendedor.getDepoSuper8(), x + 20, y + 230, false, 1);
+        this.panelSnickers = new PanelDeposito(expendedor.getDepoSnickers(), x + 20, y + 300, false, 1);
 
     }
 

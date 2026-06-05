@@ -6,16 +6,31 @@ import Logica.Moneda;
 
 import java.awt.*;
 
+/**
+ * Clase encargada de crear la representaccion grafica de una moneda.
+ */
 public class DibujaMoneda extends PosicionDibujo {
     private Moneda moneda;
     public static final int diametro = 40;
+
+    /**
+     * Se genera el ToolTip con la informacion toString de la moneda.
+     * Se define la posicion y tamaño de la moneda.
+     * @param moneda Moneda de la parte logica.
+     * @param x coordenada x donde se creara la moneda.
+     * @param y coordenada y donde se creara la moneda.
+     */
     public DibujaMoneda (Moneda moneda, int x, int y){
         super(x,y);
         this.moneda = moneda;
         this.setToolTipText(moneda.toString());
-        this.setSize(diametro,diametro);
         this.setBounds(x,y,diametro,diametro);
     }
+
+    /**
+     * Renderiza los elementos graficos de la moneda
+     * @param g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -36,21 +51,18 @@ public class DibujaMoneda extends PosicionDibujo {
         }
 
         g2d.fillOval(1, 1, diametroDibujo, diametroDibujo);
+
+        //Borde negro de la moneda
         g2d.setColor(Color.BLACK);
         g2d.drawOval(1, 1, diametroDibujo, diametroDibujo);
 
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
-        String serieStr = String.valueOf(moneda.getSerie());
+        String valorStr = "$" + moneda.getValor();
 
         FontMetrics fm = g2d.getFontMetrics();
-        int textX = (diametro - fm.stringWidth(serieStr))/2;
+        int textX = (diametro - fm.stringWidth(valorStr))/2;
         int textY = ((diametro - fm.getHeight())/2) + fm.getAscent();
 
-        g2d.drawString(serieStr, textX, textY);
-    }
-    public void setXY(int newX, int newY){
-        this.x=newX;
-        this.y=newY;
-        this.setLocation(x, y);
+        g2d.drawString(valorStr, textX, textY);
     }
 }

@@ -13,15 +13,25 @@ import java.net.URL;
 
 import Logica.*;
 
+/**
+ * Clase encargada de crear la representaccion grafica de un producto con imagenes.
+ */
 public class DibujaProductos extends PosicionDibujo {
     private Producto producto;
     private Image imagenProducto;
 
+    /**
+     * Se crea la imagen del producto con sus respectivas coordenadas, tamaño.
+     * @param producto producto a dibujar.
+     * @param x coordenada x inicial.
+     * @param y coordenada y inicial.
+     * @param ancho ancho de la imagen.
+     * @param alto alto de la imagen.
+     */
     public DibujaProductos(Producto producto, int x, int y, int ancho, int alto){
         super(x,y);
         this.producto = producto;
         this.setToolTipText("Serie: " + producto.getSerie());
-        this.setSize(ancho, alto);
         this.setBounds(x, y, ancho, alto);
 
         String nombreArchivo = determinarProducto(producto);
@@ -29,13 +39,17 @@ public class DibujaProductos extends PosicionDibujo {
 
         if (url != null) {
         this.imagenProducto = new ImageIcon(url).getImage();
-            } 
+        }
         else {
         System.err.println("Error: No se pudo encontrar la imagen - " + nombreArchivo);
-            }
-        this.imagenProducto = new ImageIcon(url).getImage();
+        }
     }
 
+    /**
+     * Busca la subclase especifica de Producto con su respectivo archivo PNG.
+     * @param p producto cualquiera a determinar
+     * @return Nombre del archivo de la imagen del producto correspondiente.
+     */
     private String determinarProducto(Producto p){
         if(p instanceof CocaCola){
             return "coca-cola.png";
@@ -54,6 +68,10 @@ public class DibujaProductos extends PosicionDibujo {
         }
     }
 
+    /**
+     * Se renderiza la imagen del producto.
+     * @param g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -63,8 +81,4 @@ public class DibujaProductos extends PosicionDibujo {
             g2d.drawImage(imagenProducto, 0, 0, this.getWidth(), this.getHeight(), this);
         }
     }
-
-
-
-
 }

@@ -27,6 +27,7 @@ public class PanelDeposito extends JPanel {
         
         this.setOpaque(false); 
         sincronizarVistas();
+        this.actualizarPosiciones();
     }
 
     public void sincronizarVistas() {
@@ -35,7 +36,7 @@ public class PanelDeposito extends JPanel {
             Object item = depo.getElemento(i);
             // tamaño de producto reducido para caber en la ventana de vidrio
             int prodW = 55;
-            int prodH = 100;
+            int prodH = 65;
 
             if (tipoElemento == 1 && item instanceof Producto) {
                 vistas.add(new DibujaProductos((Producto) item, 0, 0, prodW, prodH));
@@ -47,7 +48,7 @@ public class PanelDeposito extends JPanel {
     }
 
     public void actualizarPosiciones() {
-        int espacio=10; 
+        int espacio=-30;
         
         for (int i = 0; i < vistas.size(); i++) {
             PosicionDibujo vista = vistas.get(i);
@@ -62,6 +63,8 @@ public class PanelDeposito extends JPanel {
             
             vista.setXY(nuevoX, nuevoY); 
         }
+        this.revalidate();
+        this.repaint();
     }
 
     @Override
