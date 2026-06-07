@@ -40,9 +40,16 @@ public class Comprador {
                     monedero.add(mon);
                     vuelto+=mon.getValor();
                 }
+                estado = Estados.SELECCION_MONEDA;
+                monedaElegida = null;
+                vuelto=0;
+                sonido=null;
                 throw e;
             }
 
+        }
+        else{
+            throw new PagoIncorrectoException();
         }
     }
     public void retirarProducto(Expendedor exp){
@@ -58,6 +65,10 @@ public class Comprador {
                 vuelto+=mon.getValor();
             }
             estado=Estados.SELECCION_MONEDA;
+        }
+        else{
+            vuelto=0;
+            sonido=null;
         }
     }
     public Deposito<Moneda> getMonedero(){
