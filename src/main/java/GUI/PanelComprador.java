@@ -66,6 +66,11 @@ public class PanelComprador extends JPanel{
             panelMonedero.sincronizarVistas();
         }
     }
+    public void actualizarVisuales() {
+        if (panelMonedero != null) {
+            panelMonedero.sincronizarVistas();
+        }
+    }
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -75,17 +80,17 @@ public class PanelComprador extends JPanel{
         g.setColor(new Color(205, 127, 50));
         g.fillRect(x + 20, y + 150, 120, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Ingresar $100", x + 35, y + 175);
+        g.drawString("Seleccionar $100", x + 35, y + 175);
 
         g.setColor(new Color(192, 192, 192));
         g.fillRect(x + 20, y + 200, 120, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Ingresar $500", x + 35, y + 225);
+        g.drawString("Seleccionar $500", x + 35, y + 225);
 
         g.setColor(new Color(255, 215, 0));
         g.fillRect(x + 20, y + 250, 120, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Ingresar $1000", x + 30, y + 275);
+        g.drawString("Seleccionar $1000", x + 30, y + 275);
 
         if (panelMonedero != null) {
             panelMonedero.paintComponent(g);
