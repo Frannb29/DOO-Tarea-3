@@ -5,6 +5,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import java.net.URL;
 import Logica.*;
 
 
@@ -13,16 +16,35 @@ public class PanelPrincipal extends JPanel implements MouseListener{
     private PanelComprador comp;
     private Expendedor expLogica;
     private Comprador compLogica;
+    private Image logoCoca;
+    private Image logoSprite;
+    private Image logoFanta;
+    private Image logoSuper8;
+    private Image logoSnickers;
     public PanelPrincipal(){
         expLogica=new Expendedor(6);
         compLogica=new Comprador();
         exp=new PanelExpendedor(expLogica, 50, 50);
         comp=new PanelComprador(compLogica,450,50);
+        logoCoca = cargarImagen("imagenes/logoCoca.png");
+        logoSprite = cargarImagen("imagenes/logoSprite.png");
+        logoFanta = cargarImagen("imagenes/logoFanta.png");
+        logoSuper8 = cargarImagen("imagenes/logoSuper8.png");
+        logoSnickers = cargarImagen("imagenes/logoSnickers.png");
         this.addMouseListener(this);
         this.setBackground(Color.white);
-
         this.setToolTipText("");
         javax.swing.ToolTipManager.sharedInstance().registerComponent(this);
+    }
+
+    public Image cargarImagen(String ruta){
+        URL url = getClass().getClassLoader().getResource(ruta);
+        if (url != null) {
+            return new ImageIcon(url).getImage();
+        } else {
+            System.err.println("No se encontró la imagen: " + ruta);
+            return null;
+        }
     }
 
     @Override
@@ -30,6 +52,17 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         super.paintComponent(g);
         exp.paintComponent(g);
         comp.paintComponent(g);
+
+        g.setColor(Color.BLACK);
+        g.drawString("Elegir Producto", 360, 80);
+        int imagenX=370;
+        int imagenAncho=60;
+        int imagenAlto=60;
+        if (logoCoca != null) g.drawImage(logoCoca,imagenX,90,imagenAncho,imagenAlto,this);
+        if (logoSprite != null) g.drawImage(logoSprite,imagenX,165,imagenAncho,imagenAlto,this);
+        if (logoFanta != null) g.drawImage(logoFanta,imagenX,240,imagenAncho,imagenAlto,this);
+        if (logoSuper8 != null) g.drawImage(logoSuper8,imagenX,315,imagenAncho,imagenAlto,this);
+        if (logoSnickers != null) g.drawImage(logoSnickers,imagenX,390,imagenAncho,imagenAlto,this);
     }
 
     @Override
@@ -37,29 +70,29 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         int x=e.getX();
         int y=e.getY();
         comp.Click(x,y);
-        if(x>=70 && x<=250){
+        if(x>=360 && x<=440){
             try{
-                if(y>=70 && y<=130){
+                if(y>=90 && y<=150){
                     compLogica.comprar(ValorProducto.COCA,expLogica);
                     System.out.println("¡Compraste una CocaCola!");
                     exp.actualizarVista();
                 }
-                else if(y >= 140 && y <= 200) {
+                else if(y>=165 && y<=225) {
                     compLogica.comprar(ValorProducto.SPRITE, expLogica);
                     System.out.println("¡Compraste una Sprite!");
                     exp.actualizarVista();
                 }
-                else if(y >= 210 && y <= 270) {
+                else if(y>=240 && y<=300) {
                     compLogica.comprar(ValorProducto.FANTA, expLogica);
                     System.out.println("¡Compraste una Fanta!");
                     exp.actualizarVista();
                 }
-                else if(y >= 280 && y <= 340) {
+                else if(y>=315 && y<=375) {
                     compLogica.comprar(ValorProducto.SUPER8, expLogica);
                     System.out.println("¡Compraste un Super8!");
                     exp.actualizarVista();
                 }
-                else if(y >= 350 && y <= 410) {
+                else if(y>=390 && y<=450) {
                     compLogica.comprar(ValorProducto.SNICKERS, expLogica);
                     System.out.println("¡Compraste un Snickers!");
                     exp.actualizarVista();
