@@ -13,6 +13,11 @@ public class Comprador {
         this.estado=Estados.SELECCION_MONEDA;
         for(int i=0;i<5;i++){
             monedero.add(new Moneda1000());
+        }
+        for(int i=0;i<5;i++){
+            monedero.add(new Moneda500());
+        }
+        for(int i=0;i<3;i++){
             monedero.add(new Moneda100());
         }
     }
