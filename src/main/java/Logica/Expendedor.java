@@ -176,4 +176,7 @@ public class Expendedor {
     public Deposito<Moneda> getMonedasPago(){
         return monedasPago;
     }
+    public Producto revisaProductoComprado(){
+        return this.productoComprado;
+    }
 }

@@ -15,33 +15,47 @@ public class PanelDeposito extends JPanel {
     private int xBase;
     private int yBase;
     private boolean esVertical;
-    private int tipoElemento; 
+    private int tipoElemento;
+    private Expendedor expendedor;
 
-    public PanelDeposito(Deposito<?> depo, int xBase, int yBase, boolean esVertical, int tipoElemento) {
+    public PanelDeposito(Expendedor expendedor, Deposito<?> depo, int xBase, int yBase, boolean esVertical, int tipoElemento) {
         this.depo = depo;
         this.xBase = xBase;
         this.yBase = yBase;
         this.esVertical = esVertical;
         this.tipoElemento = tipoElemento;
         this.vistas = new ArrayList<>();
+        this.expendedor = expendedor;
         
         this.setOpaque(false); 
         sincronizarVistas();
         this.actualizarPosiciones();
+
     }
 
     public void sincronizarVistas() {
         vistas.clear();
-        for (int i = 0; i < depo.getSize(); i++) {
-            Object item = depo.getElemento(i);
-            // tamaño de producto reducido para caber en la ventana de vidrio
-            int prodW = 55;
-            int prodH = 65;
+        // caso donde es el deposito unico
+        if (this.depo == null){
+            Producto p = this.expendedor.revisaProductoComprado();
+            if (p != null){
+                int prodW = 55;
+                int prodH = 65;
+                vistas.add(new DibujaProductos(p, 0, 0, prodW, prodH));
+            }
+        }
+        else{
+            for (int i = 0; i < depo.getSize(); i++) {
+                Object item = depo.getElemento(i);
+                // tamaño de producto reducido para caber en la ventana de vidrio
+                int prodW = 55;
+                int prodH = 65;
 
-            if (tipoElemento == 1 && item instanceof Producto) {
-                vistas.add(new DibujaProductos((Producto) item, 0, 0, prodW, prodH));
-            } else if (tipoElemento == 2 && item instanceof Moneda) {
-                vistas.add(new DibujaMoneda((Moneda) item, 0, 0));
+                if (tipoElemento == 1 && item instanceof Producto) {
+                    vistas.add(new DibujaProductos((Producto) item, 0, 0, prodW, prodH));
+                } else if (tipoElemento == 2 && item instanceof Moneda) {
+                    vistas.add(new DibujaMoneda((Moneda) item, 0, 0));
+                }
             }
         }
         actualizarPosiciones();
@@ -76,5 +90,9 @@ public class PanelDeposito extends JPanel {
             vista.paint(gVista);
             gVista.dispose(); 
         }
+    }
+
+    public java.util.ArrayList<PosicionDibujo> getVistas(){
+        return this.vistas;
     }
 }

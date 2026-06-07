@@ -31,7 +31,6 @@ public class DibujaProductos extends PosicionDibujo {
     public DibujaProductos(Producto producto, int x, int y, int ancho, int alto){
         super(x,y);
         this.producto = producto;
-        this.setToolTipText("Serie: " + producto.getSerie());
         this.setBounds(x, y, ancho, alto);
 
         String nombreArchivo = determinarProducto(producto);
@@ -66,6 +65,10 @@ public class DibujaProductos extends PosicionDibujo {
         else{
             return "snickers.png";
         }
+    }
+
+    public Producto getProducto(){
+        return this.producto;
     }
 
     /**

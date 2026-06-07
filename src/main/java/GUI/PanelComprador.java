@@ -1,5 +1,6 @@
 package GUI;
 import Logica.Comprador;
+import Logica.Expendedor;
 import Logica.Moneda;
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +11,12 @@ public class PanelComprador extends JPanel{
     private int x;
     private int y;
     private PanelDeposito panelMonedero;
+    private Expendedor expendedor;
     public PanelComprador(Comprador comp,int x,int y){
         comprador=comp;
         this.x=x;
         this.y=y;
-        panelMonedero=new PanelDeposito(comprador.getMonedero(),x+20,y+100,false,2);
+        panelMonedero=new PanelDeposito(expendedor,comprador.getMonedero(),x+20,y+100,false,2);
     }
     public void Click(int clickX,int clickY){
         if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 150 && clickY <= this.y + 190){

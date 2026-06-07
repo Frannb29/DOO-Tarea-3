@@ -23,8 +23,11 @@ public class DibujaMoneda extends PosicionDibujo {
     public DibujaMoneda (Moneda moneda, int x, int y){
         super(x,y);
         this.moneda = moneda;
-        this.setToolTipText(moneda.toString());
         this.setBounds(x,y,diametro,diametro);
+    }
+
+    public Moneda getMoneda() {
+        return moneda;
     }
 
     /**

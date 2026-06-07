@@ -20,6 +20,9 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         comp=new PanelComprador(compLogica,450,50);
         this.addMouseListener(this);
         this.setBackground(Color.white);
+
+        this.setToolTipText("");
+        javax.swing.ToolTipManager.sharedInstance().registerComponent(this);
     }
 
     @Override
@@ -39,22 +42,27 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 if(y>=70 && y<=130){
                     compLogica.comprar(ValorProducto.COCA,expLogica);
                     System.out.println("¡Compraste una CocaCola!");
+                    exp.actualizarVista();
                 }
                 else if(y >= 140 && y <= 200) {
                     compLogica.comprar(ValorProducto.SPRITE, expLogica);
                     System.out.println("¡Compraste una Sprite!");
+                    exp.actualizarVista();
                 }
                 else if(y >= 210 && y <= 270) {
                     compLogica.comprar(ValorProducto.FANTA, expLogica);
                     System.out.println("¡Compraste una Fanta!");
+                    exp.actualizarVista();
                 }
                 else if(y >= 280 && y <= 340) {
                     compLogica.comprar(ValorProducto.SUPER8, expLogica);
                     System.out.println("¡Compraste un Super8!");
+                    exp.actualizarVista();
                 }
                 else if(y >= 350 && y <= 410) {
                     compLogica.comprar(ValorProducto.SNICKERS, expLogica);
                     System.out.println("¡Compraste un Snickers!");
+                    exp.actualizarVista();
                 }
             }
             catch(Exception excepcion){
@@ -69,8 +77,65 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 System.out.println("Vuelto total recogido: $" + compLogica.cuantoVuelto());
             }
         }
+        exp.actualizarVista();
         comp.actualizarVisuales();
         this.repaint();
+    }
+
+    @Override
+    public String getToolTipText(java.awt.event.MouseEvent event) {
+        int mX = event.getX();
+        int mY = event.getY();
+
+        //productos de los estantes
+        if(mX >= 70 && mX <= 250){
+            PanelDeposito estanteSeleccionado = null;
+
+            if(mY >= 70 && mY <= 130){
+                estanteSeleccionado = exp.getPanelCoca();
+            }
+            else if(mY >= 140 && mY <= 200){
+                estanteSeleccionado = exp.getPanelSprite();
+            }
+            else if(mY >= 210 && mY <= 270){
+                estanteSeleccionado = exp.getPanelFanta();
+            }
+            else if(mY >= 280 && mY <= 340){
+                estanteSeleccionado = exp.getPanelSuper8();
+            }
+            else if(mY >= 350 && mY <= 410){
+                estanteSeleccionado = exp.getPanelSnickers();
+            }
+
+            if(estanteSeleccionado != null){
+                java.util.ArrayList<PosicionDibujo> vistas = estanteSeleccionado.getVistas();
+                for(int j = 0; j < vistas.size(); j++){
+                    PosicionDibujo vista = vistas.get(j);
+
+                    int vX = vista.getX()-20;
+                    int vY = vista.getY();
+
+                    if(mX >= vX && mX <= (vX + vista.getWidth()) && mY >= vY && mY <= (vY + vista.getHeight())){
+
+                        if(vista instanceof DibujaProductos){
+                            return "Serie: " + ((DibujaProductos) vista).getProducto().getSerie();
+                        } else if (vista instanceof DibujaMoneda) {
+                            return ((DibujaMoneda) vista).getMoneda().toString();
+                        }
+                    }
+                }
+            }
+        }
+
+        //producto en deposito del vuelto
+        if(mX >= 70 && mX <= 250 && mY >= 470 && mY <= 530) {
+            Producto p = this.expLogica.revisaProductoComprado();
+            if(p != null){
+                return "Serie: " + p.getSerie();
+            }
+        }
+
+        return super.getToolTipText(event);
     }
 
     @Override

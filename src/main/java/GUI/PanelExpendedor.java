@@ -25,12 +25,41 @@ public class PanelExpendedor extends JPanel {
         this.x=x;
         this.y=y;
 
-        this.panelCoca = new PanelDeposito(expendedor.getDepoCoca(), x + 20, y + 20, false, 1);
-        this.panelSprite = new PanelDeposito(expendedor.getDepoSprite(), x + 20, y + 90, false, 1);
-        this.panelFanta = new PanelDeposito(expendedor.getDepoFanta(), x + 20, y + 160, false, 1);
-        this.panelSuper8 = new PanelDeposito(expendedor.getDepoSuper8(), x + 20, y + 230, false, 1);
-        this.panelSnickers = new PanelDeposito(expendedor.getDepoSnickers(), x + 20, y + 300, false, 1);
+        this.panelCoca = new PanelDeposito(expendedor, expendedor.getDepoCoca(), x + 20, y + 20, false, 1);
+        this.panelSprite = new PanelDeposito(expendedor, expendedor.getDepoSprite(), x + 20, y + 90, false, 1);
+        this.panelFanta = new PanelDeposito(expendedor, expendedor.getDepoFanta(), x + 20, y + 160, false, 1);
+        this.panelSuper8 = new PanelDeposito(expendedor, expendedor.getDepoSuper8(), x + 20, y + 230, false, 1);
+        this.panelSnickers = new PanelDeposito(expendedor, expendedor.getDepoSnickers(), x + 20, y + 300, false, 1);
+        this.panelVuelto = new PanelDeposito(expendedor, null, x + 20, y + 420, false, 1);
 
+    }
+
+    public void actualizarVista(){
+        if(panelCoca != null){
+            panelCoca.sincronizarVistas();
+            panelCoca.repaint();
+        }
+        if(panelFanta != null){
+            panelFanta.sincronizarVistas();
+            panelFanta.repaint();
+        }
+        if(panelSprite != null){
+            panelSprite.sincronizarVistas();
+            panelSprite.repaint();
+        }
+        if(panelSnickers != null){
+            panelSnickers.sincronizarVistas();
+            panelSnickers.repaint();
+        }
+        if(panelSuper8 != null){
+            panelSuper8.sincronizarVistas();
+            panelSuper8.repaint();
+        }
+        if(panelVuelto != null){
+            panelVuelto.sincronizarVistas();
+            panelVuelto.repaint();
+        }
+        this.repaint();
     }
 
     @Override
@@ -39,13 +68,25 @@ public class PanelExpendedor extends JPanel {
         dibujarCarcasa(g);
         dibujarVidrio(g);
         dibujarRanuras(g);
-        
-        panelCoca.paintComponent(g);
-        panelSprite.paintComponent(g);
-        panelFanta.paintComponent(g);
-        panelSuper8.paintComponent(g);
-        panelSnickers.paintComponent(g);
-     
+
+        if(panelCoca != null){
+            panelCoca.paintComponent(g);
+        }
+        if(panelSprite != null){
+            panelSprite.paintComponent(g);
+        }
+        if(panelFanta != null){
+            panelFanta.paintComponent(g);
+        }
+        if(panelSuper8 != null){
+            panelSuper8.paintComponent(g);
+        }
+        if(panelSnickers != null){
+            panelSnickers.paintComponent(g);
+        }
+        if(panelVuelto != null){
+            panelVuelto.paintComponent(g);
+        }
     }
     
     
@@ -77,5 +118,25 @@ public class PanelExpendedor extends JPanel {
         // Depósito para el vuelto
         g.setColor(Color.GRAY);
         g.fillRect(x + 230, y + 420, 40, 40);
+    }
+
+    public PanelDeposito getPanelCoca(){
+        return this.panelCoca;
+    }
+
+    public PanelDeposito getPanelSprite(){
+        return this.panelSprite;
+    }
+
+    public PanelDeposito getPanelFanta(){
+        return this.panelFanta;
+    }
+
+    public PanelDeposito getPanelSuper8(){
+        return this.panelSuper8;
+    }
+
+    public PanelDeposito getPanelSnickers(){
+        return this.panelSnickers;
     }
 }
