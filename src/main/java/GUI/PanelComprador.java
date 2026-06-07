@@ -18,14 +18,15 @@ public class PanelComprador extends JPanel{
     }
     public void Click(int clickX,int clickY){
         if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 150 && clickY <= this.y + 190){
-            System.out.println("Moneda de 100 seleccionada");
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==100){
                     encontrada=true;
-                    comprador.ingresarMoneda(m);
+                    if(comprador.ingresarMoneda(m)){
+                        System.out.println("Moneda de 100 seleccionada");
+                    }
                 }
                 else if(m!=null){
                     comprador.getMonedero().add(m);
@@ -33,14 +34,15 @@ public class PanelComprador extends JPanel{
             }
         }
         else if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 200 && clickY <= this.y + 240){
-            System.out.println("Moneda de 500 seleccionada");
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==500){
                     encontrada=true;
-                    comprador.ingresarMoneda(m);
+                    if(comprador.ingresarMoneda(m)){
+                        System.out.println("Moneda de 500 seleccionada");
+                    }
                 }
                 else if(m!=null){
                     comprador.getMonedero().add(m);
@@ -48,14 +50,15 @@ public class PanelComprador extends JPanel{
             }
         }
         else if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 250 && clickY <= this.y + 290){
-            System.out.println("Moneda de 1000 seleccionada");
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==1000){
                     encontrada=true;
-                    comprador.ingresarMoneda(m);
+                    if(comprador.ingresarMoneda(m)){
+                        System.out.println("Moneda de 1000 seleccionada");
+                    }
                 }
                 else if(m!=null){
                     comprador.getMonedero().add(m);

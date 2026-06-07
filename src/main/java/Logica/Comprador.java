@@ -21,10 +21,15 @@ public class Comprador {
             monedero.add(new Moneda100());
         }
     }
-    public void ingresarMoneda(Moneda m){
+    public boolean ingresarMoneda(Moneda m){
         if(estado==Estados.SELECCION_MONEDA){
             monedaElegida=m;
             estado=Estados.SELECCION_PRODUCTO;
+            return true;
+        }
+        else{
+            monedero.add(m);
+            return false;
         }
     }
     public void comprar(ValorProducto val,Expendedor exp)throws PagoInsuficienteException,PagoIncorrectoException,NoHayProductoException {
