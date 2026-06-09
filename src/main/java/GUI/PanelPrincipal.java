@@ -130,22 +130,22 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         int mY = event.getY();
 
         //productos de los estantes
-        if(mX >= 70 && mX <= 250){
+        if(mX >= 80 && mX <= 340){
             PanelDeposito estanteSeleccionado = null;
 
-            if(mY >= 70 && mY <= 130){
+            if(mY >= 80 && mY <= 140){
                 estanteSeleccionado = exp.getPanelCoca();
             }
-            else if(mY >= 140 && mY <= 200){
+            else if(mY >= 150 && mY <= 210){
                 estanteSeleccionado = exp.getPanelSprite();
             }
-            else if(mY >= 210 && mY <= 270){
+            else if(mY >= 220 && mY <= 280){
                 estanteSeleccionado = exp.getPanelFanta();
             }
-            else if(mY >= 280 && mY <= 340){
+            else if(mY >= 290 && mY <= 350){
                 estanteSeleccionado = exp.getPanelSuper8();
             }
-            else if(mY >= 350 && mY <= 410){
+            else if(mY >= 360 && mY <= 430){
                 estanteSeleccionado = exp.getPanelSnickers();
             }
 
@@ -154,7 +154,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 for(int j = 0; j < vistas.size(); j++){
                     PosicionDibujo vista = vistas.get(j);
 
-                    int vX = vista.getX()-20;
+                    int vX = vista.getX()-10;
                     int vY = vista.getY();
 
                     if(mX >= vX && mX <= (vX + vista.getWidth()) && mY >= vY && mY <= (vY + vista.getHeight())){
