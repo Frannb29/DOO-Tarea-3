@@ -176,6 +176,27 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 return "Serie: " + p.getSerie();
             }
         }
+        //monedas del monedero
+        if(mX >= 620 && mX <= 1200 && mY >= 350 && mY <= 550){
+            PanelDeposito monedero = comp.getPanelMonedero();
+            if(monedero != null){
+                java.util.ArrayList<PosicionDibujo> vistas = monedero.getVistas();
+
+                for(int i = 0;i< vistas.size();i++){
+                    PosicionDibujo vista = vistas.get(i);
+
+                    int vX = vista.getX();
+                    int vY = vista.getY();
+
+                    if(mX >= vX && mX <= vX + vista.getWidth() && mY >= vY && mY <= vY + vista.getHeight()){
+                        if(vista instanceof DibujaMoneda){
+                            return ((DibujaMoneda) vista).getMoneda().toString();
+                        }
+                    }
+                }
+            }
+        }
+
 
         return super.getToolTipText(event);
     }

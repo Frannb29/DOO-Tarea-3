@@ -93,6 +93,35 @@ public class PanelDeposito extends JPanel {
                 vista.setXY(nuevoX, nuevoY);
             }
         }
+        else if (tipoElemento == 2) {
+
+            int contador1000 = 0;
+            int contador500 = 0;
+            int contador100 = 0;
+
+            for(int i = 0;i < vistas.size();i++){
+                PosicionDibujo vista = vistas.get(i);
+
+                if(vista instanceof DibujaMoneda){
+
+                    DibujaMoneda dm = (DibujaMoneda) vista;
+                    int valor = dm.getMoneda().getValor();
+
+                    if(valor == 1000){
+                        vista.setXY(xBase + contador1000 * 45, yBase + 200);
+                        contador1000++;
+                    }
+                    else if(valor == 500){
+                        vista.setXY(xBase + contador500 * 45, yBase + 250);
+                        contador500++;
+                    }
+                    else if(valor == 100){
+                        vista.setXY(xBase + contador100 * 45, yBase + 300);
+                        contador100++;
+                    }
+                }
+            }
+        }
         else {
             int espacio = (tipoElemento == 1) ? -22 : -35;
             

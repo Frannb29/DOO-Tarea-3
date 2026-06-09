@@ -110,12 +110,15 @@ public class PanelComprador extends JPanel{
             panelMonedero.sincronizarVistas();
         }
     }
+    public PanelDeposito getPanelMonedero(){
+        return panelMonedero;
+    }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(new Color(70,130,180));
-        g.fillRect(x-100,y+20,250,400);
+        g.fillRect(x-100,y+20,650,450);
 
         g.setColor(new Color(205, 127, 50));
         g.fillRect(x+20, y+150, 120, 40);
