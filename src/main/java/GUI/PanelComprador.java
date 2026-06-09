@@ -4,6 +4,7 @@ import Logica.Expendedor;
 import Logica.Moneda;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class PanelComprador extends JPanel{
@@ -68,14 +69,36 @@ public class PanelComprador extends JPanel{
             }
         }
         if (panelMonedero != null) {
+            actualizarVisuales();
+        }
+    }
+    private void ordenarMonedero(){
+        ArrayList<Moneda> listaTemporal=new ArrayList<>();
+        Moneda m;
+        while((m=comprador.getMonedero().get())!=null){
+            listaTemporal.add(m);
+        }
+        int n=listaTemporal.size();
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++){
+                if(listaTemporal.get(j).compareTo(listaTemporal.get(j+1))<0){
+                    Moneda temp=listaTemporal.get(j);
+                    listaTemporal.set(j,listaTemporal.get(j+1));
+                    listaTemporal.set(j+1,temp);
+                }
+            }
+        }
+        for(int i=0;i<listaTemporal.size();i++){
+            comprador.getMonedero().add(listaTemporal.get(i));
+        }
+    }
+    public void actualizarVisuales(){
+        if (panelMonedero != null){
+            ordenarMonedero();
             panelMonedero.sincronizarVistas();
         }
     }
-    public void actualizarVisuales() {
-        if (panelMonedero != null) {
-            panelMonedero.sincronizarVistas();
-        }
-    }
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
