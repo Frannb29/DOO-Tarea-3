@@ -50,7 +50,7 @@ public class PanelExpendedor extends JPanel {
         this.panelFanta = new PanelDeposito(expendedor, expendedor.getDepoFanta(), x + 15, y + 180, false, 1);
         this.panelSuper8 = new PanelDeposito(expendedor, expendedor.getDepoSuper8(), x + 15, y + 260, false, 1);
         this.panelSnickers = new PanelDeposito(expendedor, expendedor.getDepoSnickers(), x + 15, y + 340, false, 1);
-        this.panelCompra = new PanelDeposito(expendedor, null, x + 10, y + 445, false, 1);
+        this.panelCompra = new PanelDeposito(expendedor, null, x + 25, y + 448, false, 1);
         this.panelMonedas = new PanelDeposito(expendedor, expendedor.getMonedasVuelto(), x+232, y+485, false, 3);
     }
 
@@ -267,19 +267,29 @@ public class PanelExpendedor extends JPanel {
         g2d.drawRect(ranuraX+6, placaY, ranuraW-12, 25);
 
         // Depósito especial para retirar el producto comprado
-        GradientPaint gpRetiro = new GradientPaint(x+20, y+450, interiorOscuro, x+20, y+520, new Color(30, 30, 30));
+        GradientPaint gpRetiro = new GradientPaint(x+25, y+450, interiorOscuro, x+25, y+520, new Color(0, 15, 30));
         g2d.setPaint(gpRetiro);
-        g2d.fillRect(x+20, y+450, 180, 60); 
-        g2d.setColor(bordeMarco); g2d.drawRect(x+19, y+449, 182, 62);
-        g2d.setColor(Color.BLACK); g2d.drawRect(x+20, y+450, 180, 60);
+        g2d.fillRect(x+25, y+450, 180, 60); 
+
+        GradientPaint gpMarco = new GradientPaint(x+20, y+445, metalClaro, x+15, y+515, metalOscuro);
+        g2d.setPaint(gpMarco);
+        g2d.fillRoundRect(x+20, y+445, 190, 70, 5, 5);
+
+        g2d.setPaint(gpRetiro);
+        g2d.fillRect(x+25, y+450, 180, 60);
+        g2d.setColor(Color.BLACK); 
+        g2d.drawRect(x+25, y+450, 180, 60); 
+        g2d.drawRoundRect(x+20, y+445, 190, 70, 5, 5);
         
         // Depósito para el vuelto
+        g2d.setPaint(gpMarco);
+        g2d.fillRoundRect(x+225, y+445, 50, 50, 5, 5);
+        
         g2d.setPaint(gpRetiro); 
         g2d.fillRect(x+230, y+450, 40, 40);
-        g2d.setColor(bordeMarco); 
-        g2d.drawRect(x+229, y+449, 42, 42);
         g2d.setColor(Color.BLACK); 
         g2d.drawRect(x+230, y+450, 40, 40);
+        g2d.drawRoundRect(x+225, y+445, 50, 50, 5, 5);
     }
 
     /**

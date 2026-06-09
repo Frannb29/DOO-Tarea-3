@@ -133,7 +133,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 JOptionPane.showMessageDialog(this,excepcion.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(x >= 70 && x <= 250 && y >= 500 && y <= 560) {
+        if(x >= 75 && x <= 255 && y >= 500 && y <= 560) {
             compLogica.retirarProducto(expLogica);
             String consumido = compLogica.queConsumiste();
             if(consumido!=null){
