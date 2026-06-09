@@ -14,7 +14,6 @@ public class DibujaMoneda extends PosicionDibujo {
     private int diametro;
 
     /**
-     * Se genera el ToolTip con la informacion toString de la moneda.
      * Se define la posicion y tamaño de la moneda.
      * @param moneda Moneda de la parte logica.
      * @param x coordenada x donde se creara la moneda.

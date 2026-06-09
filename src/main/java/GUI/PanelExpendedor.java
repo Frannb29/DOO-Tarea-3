@@ -14,6 +14,13 @@ import java.awt.FontMetrics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Administra los panales graficos del Expendedor,
+ * manteniendo actualizadas las vistas de los paneles de los productos, vuelto
+ * y producto comprado,
+ * cuando algun panel queda vacio procesa el click para rellenarlo.
+ * Dibuja el expendedor.
+ */
 public class PanelExpendedor extends JPanel {
     private Expendedor expendedor;
     private PanelDeposito panelCoca;
@@ -27,6 +34,12 @@ public class PanelExpendedor extends JPanel {
     private int x;
     private int y;
 
+    /**
+     * Inicializa los paneles de los elementos.
+     * @param expendedor utilizado para acceder al producto comprado.
+     * @param x coordenada x inicial.
+     * @param y coordenada y inicial.
+     */
     public PanelExpendedor(Expendedor expendedor, int x, int y){
         this.expendedor=expendedor;
         this.x=x;
@@ -41,6 +54,9 @@ public class PanelExpendedor extends JPanel {
         this.panelMonedas = new PanelDeposito(expendedor, expendedor.getMonedasVuelto(), x+232, y+485, false, 3);
     }
 
+    /**
+     * Actualiza y repinta todos los paneles del expendedor.
+     */
     public void actualizarVista(){
         if(panelCoca != null){
             panelCoca.sincronizarVistas();
@@ -72,7 +88,12 @@ public class PanelExpendedor extends JPanel {
         }
         this.repaint();
     }
-    
+
+    /**
+     * Detecta clicks sobre los depositos y los rellena cuando se vacian.
+     * @param mouseX coordenada x del mouse.
+     * @param mouseY coordenada y del mouse.
+     */
     public void procesarClick(int mouseX, int mouseY) {
         if (mouseX>=x+20 && mouseX<=x+292) {
             if (mouseY>=y+20 && mouseY<=y+80) {
@@ -109,6 +130,10 @@ public class PanelExpendedor extends JPanel {
         }
     }
 
+    /**
+     * Dibuja el expendedor con los paneles de productos.
+     * @param g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); 

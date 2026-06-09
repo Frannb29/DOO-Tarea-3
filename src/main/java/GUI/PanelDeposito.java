@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import Logica.*;
 
+/**
+ * Clase encargada de gestionar y actualizar la posicion de los elementos (productos y monedas).
+ */
 public class PanelDeposito extends JPanel {
     
     private Deposito<?> depo; 
@@ -18,6 +21,15 @@ public class PanelDeposito extends JPanel {
     private int tipoElemento;
     private Expendedor expendedor;
 
+    /**
+     * Constructor de PanelDeposito que inicializa variables.
+     * @param expendedor instancia del Expendedor utilizada para acceder al prodcuto comprado.
+     * @param depo deposito de los elementos a representar.
+     * @param xBase coordenada x inicial.
+     * @param yBase coordenada y inicial.
+     * @param esVertical determina el orden vertical u horizontal de los elementos.
+     * @param tipoElemento identifica si el elemento es un producto o una moneda.
+     */
     public PanelDeposito(Expendedor expendedor, Deposito<?> depo, int xBase, int yBase, boolean esVertical, int tipoElemento) {
         this.depo = depo;
         this.xBase = xBase;
@@ -33,9 +45,12 @@ public class PanelDeposito extends JPanel {
 
     }
 
+    /**
+     * Sincroniza las vistas con los elementos en el deposito.
+     */
     public void sincronizarVistas() {
         vistas.clear();
-        // caso donde es el deposito unico
+        // caso donde es el deposito unico (producto comprado)
         if (this.depo == null){
             Producto p = this.expendedor.revisaProductoComprado();
             if (p != null){
@@ -67,6 +82,9 @@ public class PanelDeposito extends JPanel {
         actualizarPosiciones();
     }
 
+    /**
+     * Calcula y actualiza las posiciones de los elementos segun su tipo.
+     */
     public void actualizarPosiciones() {
         if (tipoElemento == 3) {
 
@@ -143,6 +161,10 @@ public class PanelDeposito extends JPanel {
         }
     }
 
+    /**
+     * Dibuja las vistas almacenadas en sus posiciones actuales.
+     * @param g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -6,19 +6,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-
+/**
+ * Clase encargada de gestionar y mostrar los botones de monedas.
+ */
 public class PanelComprador extends JPanel{
     private Comprador comprador;
     private int x;
     private int y;
     private PanelDeposito panelMonedero;
     private Expendedor expendedor;
+
+    /**
+     * Constructor del PanelComprador.
+     * @param comp Instancia de comprador.
+     * @param x coordenada x inicial del panel.
+     * @param y coordenada y inicial del panel.
+     */
     public PanelComprador(Comprador comp,int x,int y){
         comprador=comp;
         this.x=x;
         this.y=y;
         panelMonedero=new PanelDeposito(expendedor,comprador.getMonedero(),x+20,y+100,false,2);
     }
+
+    /**
+     * Metodo para manejar los clicks sobre los botones de seleccionar y agregar monedas del comprador.
+     * @param clickX coordendada x del click.
+     * @param clickY coordenada y del click.
+     */
     public void click(int clickX, int clickY){
         if(clickX >= this.x+20 && clickX<=this.x+140 && clickY>=this.y+150 && clickY<=this.y+190){
             int tamaño=comprador.getMonedero().getSize();
@@ -84,6 +99,10 @@ public class PanelComprador extends JPanel{
             actualizarVisuales();
         }
     }
+
+    /**
+     *  Ordena las monedas segun su valor.
+     */
     private void ordenarMonedero(){
         ArrayList<Moneda> listaTemporal=new ArrayList<>();
         Moneda m;
@@ -114,6 +133,10 @@ public class PanelComprador extends JPanel{
         return panelMonedero;
     }
 
+    /**
+     *  Dibuja panel del comprador y botones para seleccionar y agregar monedas.
+     * @param g g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);

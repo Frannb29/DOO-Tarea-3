@@ -1,11 +1,19 @@
 package Logica;
 
+/**
+ * Simula un comprador que ingresa una moneda, selecciona un producto,
+ * realiza la compra y retira el producto junto con el vuelto.
+ */
 public class Comprador {
     private String sonido;
     private int vuelto;
     private Moneda monedaElegida;
     private Estados estado;
     private Deposito <Moneda> monedero;
+
+    /**
+     * Inicializa el estado del comprador y su monedero con monedas disponibles.
+     */
     public Comprador(){
         monedero=new Deposito<>();
         this.sonido=null;
@@ -21,6 +29,12 @@ public class Comprador {
             monedero.add(new Moneda100());
         }
     }
+
+    /**
+     * Al ingresar una moneda permite seleccionar un producto.
+     * @param m moneda a ingresar.
+     * @return true si la moneda fue aceptada o false si ya tenia una moneda seleccionada.
+     */
     public boolean ingresarMoneda(Moneda m){
         if(estado==Estados.SELECCION_MONEDA){
             monedaElegida=m;
@@ -32,6 +46,16 @@ public class Comprador {
             return false;
         }
     }
+
+    /**
+     * Procesa la seleccion de moneda y producto, maneja excepciones en
+     * el proceso de compra y retiro de producto.
+     * @param val valor del producto seleccionado.
+     * @param exp expendedor asociado.
+     * @throws PagoInsuficienteException compra con una moneda inferior al valor del producto.
+     * @throws PagoIncorrectoException moneda no valida
+     * @throws NoHayProductoException deposito vacio del producto seleccionado.
+     */
     public void comprar(ValorProducto val,Expendedor exp)throws PagoInsuficienteException,PagoIncorrectoException,NoHayProductoException {
         if(estado==Estados.SELECCION_PRODUCTO){
             try{
@@ -57,6 +81,11 @@ public class Comprador {
             throw new PagoIncorrectoException();
         }
     }
+
+    /**
+     * Retiro del producto y vuelto en monedas.
+     * @param exp expendedor asociado.
+     */
     public void retirarProducto(Expendedor exp){
         if(estado==Estados.VUELTO){
             Producto p= exp.getProducto();

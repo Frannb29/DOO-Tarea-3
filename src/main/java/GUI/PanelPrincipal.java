@@ -11,7 +11,10 @@ import javax.swing.ImageIcon;
 import java.net.URL;
 import Logica.*;
 
-
+/**
+ * Gestiona la interaccion entre el comprador y el expendedor,
+ * procesa las compras y muestra los ToolTips de los elementos.
+ */
 public class PanelPrincipal extends JPanel implements MouseListener{
     private PanelExpendedor exp;
     private PanelComprador comp;
@@ -22,6 +25,11 @@ public class PanelPrincipal extends JPanel implements MouseListener{
     private Image logoFanta;
     private Image logoSuper8;
     private Image logoSnickers;
+
+    /**
+     * Inicializa la logica del comprador y expendedor,
+     * carga las imagenes de los productos y configura eventos del mouse.
+     */
     public PanelPrincipal(){
         expLogica=new Expendedor(10);
         compLogica=new Comprador();
@@ -46,6 +54,11 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         javax.swing.ToolTipManager.sharedInstance().registerComponent(this);
     }
 
+    /**
+     * Carga de imagen desde la carpeta resources del proyecto.
+     * @param ruta ruta relativa de la imagen.
+     * @return imagen cargada o null si no se encuentra.
+     */
     public Image cargarImagen(String ruta){
         URL url = getClass().getClassLoader().getResource(ruta);
         if (url != null) {
@@ -56,6 +69,10 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         }
     }
 
+    /**
+     * Dibuja expendedor y logos de seleccion de productos.
+     * @param g objeto Graphics utilizado para dibujar en la pantalla.
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -74,6 +91,11 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         if (logoSnickers != null) g.drawImage(logoSnickers,imagenX,390,imagenAncho,imagenAlto,this);
     }
 
+    /**
+     * Procesa clicks para la seleccion de productos, el retiro
+     * y actualiza las vistas.
+     * @param e evento del mouse.
+     */
     @Override
     public void mousePressed(MouseEvent e){
         int x=e.getX();
@@ -124,6 +146,11 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         this.repaint();
     }
 
+    /**
+     * Obtiene el texto del ToolTip del elemento sobre el que se encuentre el mouse.
+     * @param event evento para obtener la posición del mouse.
+     * @return serie del elemento.
+     */
     @Override
     public String getToolTipText(java.awt.event.MouseEvent event) {
         int mX = event.getX();
