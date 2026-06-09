@@ -78,7 +78,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
     public void mousePressed(MouseEvent e){
         int x=e.getX();
         int y=e.getY();
-        comp.Click(x,y);
+        comp.click(x,y);
         if(x>=530 && x<=590){
             try{
                 if(y>=90 && y<=150){
