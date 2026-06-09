@@ -36,9 +36,9 @@ public class PanelComprador extends JPanel{
      */
     public void click(int clickX, int clickY){
         if(clickX >= this.x+20 && clickX<=this.x+140 && clickY>=this.y+150 && clickY<=this.y+190){
-            int tamaño=comprador.getMonedero().getSize();
+            int tamano=comprador.getMonedero().getSize();
             boolean encontrada=false;
-            for(int i=0;i<tamaño;i++){
+            for(int i=0;i<tamano;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==100){
                     encontrada=true;
@@ -52,9 +52,9 @@ public class PanelComprador extends JPanel{
             }
         }
         else if(clickX>=this.x+20 && clickX<=this.x+140 && clickY>=this.y+200 && clickY<=this.y+240){
-            int tamaño=comprador.getMonedero().getSize();
+            int tamano=comprador.getMonedero().getSize();
             boolean encontrada=false;
-            for(int i=0;i<tamaño;i++){
+            for(int i=0;i<tamano;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==500){
                     encontrada=true;
@@ -68,9 +68,9 @@ public class PanelComprador extends JPanel{
             }
         }
         else if(clickX>=this.x+20 && clickX <= this.x+140 && clickY>=this.y+250 && clickY<=this.y+290){
-            int tamaño=comprador.getMonedero().getSize();
+            int tamano=comprador.getMonedero().getSize();
             boolean encontrada=false;
-            for(int i=0;i<tamaño;i++){
+            for(int i=0;i<tamano;i++){
                 Moneda m=comprador.getMonedero().get();
                 if(!encontrada && m!=null && m.getValor()==1000){
                     encontrada=true;

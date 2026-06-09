@@ -12,8 +12,6 @@ public abstract class Producto {
     private int serie;
     /**
      * Constructor que inicializa un producto con un numero de serie.
-     * 
-     * @param serie el numero de serie del producto
      */
     public Producto(){
         this.serie=nroSerie;

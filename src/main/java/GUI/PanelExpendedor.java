@@ -169,7 +169,10 @@ public class PanelExpendedor extends JPanel {
         }
     }
     
-    
+    /**
+     * Dibuja las vistas de los paneles en sus posiciones correspondientes.
+     * @param g2d objeto Graphics2D utilizado para dibujar en la pantalla.
+     */
     private void dibujarCarcasa(Graphics2D g2d) {
         
         Color colorCarcasa=new Color(12,12,12);
@@ -191,6 +194,10 @@ public class PanelExpendedor extends JPanel {
         g2d.drawRect(x, y, 350, 535);
     }
     
+    /**
+     * Dibuja el vidrio del expendedor.
+     * @param g2d objeto Graphics2D utilizado para dibujar en la pantalla.
+     */
     private void dibujarVidrio(Graphics2D g2d) {
         int ancho=272;
         int alto=400;
@@ -210,6 +217,10 @@ public class PanelExpendedor extends JPanel {
         g2d.fillPolygon(xReflejos, yReflejos, 3);
     }
     
+    /**
+     * Dibuja las ranuras del expendedor.
+     * @param g2d objeto Graphics2D utilizado para dibujar en la pantalla.
+     */
     private void dibujarRanuras(Graphics2D g2d) {
         Color interiorOscuro = new Color(5, 5, 5);
         Color bordeMarco = new Color(70, 70, 75);
@@ -271,6 +282,10 @@ public class PanelExpendedor extends JPanel {
         g2d.drawRect(x+230, y+450, 40, 40);
     }
 
+    /**
+     * Dibuja las repisas del expendedor.
+     * @param g2d objeto Graphics2D utilizado para dibujar en la pantalla.
+     */
     private void dibujarRepisa(Graphics2D g2d) {
         int alto=10;
         int[] yPosiciones = {80, 161, 243, 320, 403};

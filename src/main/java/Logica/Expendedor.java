@@ -49,7 +49,6 @@ public class Expendedor {
      * 
      * @param m la moneda ingresada para la compra
      * @param select el tipo de producto a comprar
-     * @return el producto si la compra es exitosa
      * @throws PagoIncorrectoException si la moneda es nula
      * @throws PagoInsuficienteException si el valor de la moneda es menor al precio
      * @throws NoHayProductoException si no hay producto disponible en el deposito
