@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import java.awt.Image;
@@ -22,16 +23,24 @@ public class PanelPrincipal extends JPanel implements MouseListener{
     private Image logoSuper8;
     private Image logoSnickers;
     public PanelPrincipal(){
-        expLogica=new Expendedor(6);
+        expLogica=new Expendedor(10);
         compLogica=new Comprador();
         exp=new PanelExpendedor(expLogica, 50, 50);
-        comp=new PanelComprador(compLogica,450,50);
+        comp=new PanelComprador(compLogica,600,50);
         logoCoca = cargarImagen("imagenes/logoCoca.png");
         logoSprite = cargarImagen("imagenes/logoSprite.png");
         logoFanta = cargarImagen("imagenes/logoFanta.png");
         logoSuper8 = cargarImagen("imagenes/logoSuper8.png");
         logoSnickers = cargarImagen("imagenes/logoSnickers.png");
         this.addMouseListener(this);
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int xClic=e.getX();
+                int yClic=e.getY();
+                exp.procesarClick(xClic, yClic);
+            }
+        });
         this.setBackground(Color.white);
         this.setToolTipText("");
         javax.swing.ToolTipManager.sharedInstance().registerComponent(this);
@@ -54,8 +63,8 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         comp.paintComponent(g);
 
         g.setColor(Color.BLACK);
-        g.drawString("Elegir Producto", 360, 80);
-        int imagenX=370;
+        g.drawString("Elegir Producto", 520, 80);
+        int imagenX=530;
         int imagenAncho=60;
         int imagenAlto=60;
         if (logoCoca != null) g.drawImage(logoCoca,imagenX,90,imagenAncho,imagenAlto,this);
@@ -70,7 +79,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         int x=e.getX();
         int y=e.getY();
         comp.Click(x,y);
-        if(x>=360 && x<=440){
+        if(x>=530 && x<=590){
             try{
                 if(y>=90 && y<=150){
                     compLogica.comprar(ValorProducto.COCA,expLogica);

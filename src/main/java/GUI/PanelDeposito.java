@@ -39,22 +39,28 @@ public class PanelDeposito extends JPanel {
         if (this.depo == null){
             Producto p = this.expendedor.revisaProductoComprado();
             if (p != null){
-                int prodW = 55;
+                int prodW = 65;
                 int prodH = 65;
                 vistas.add(new DibujaProductos(p, 0, 0, prodW, prodH));
             }
         }
         else{
             for (int i = 0; i < depo.getSize(); i++) {
+                if (tipoElemento == 1 && i >= 6) {
+                    break; 
+                }
+
                 Object item = depo.getElemento(i);
                 // tamaño de producto reducido para caber en la ventana de vidrio
-                int prodW = 55;
+                int prodW = 65;
                 int prodH = 65;
 
                 if (tipoElemento == 1 && item instanceof Producto) {
                     vistas.add(new DibujaProductos((Producto) item, 0, 0, prodW, prodH));
                 } else if (tipoElemento == 2 && item instanceof Moneda) {
-                    vistas.add(new DibujaMoneda((Moneda) item, 0, 0));
+                    vistas.add(new DibujaMoneda((Moneda) item, 0, 0, 40));
+                } else if (tipoElemento==3 && item instanceof Moneda){
+                    vistas.add(new DibujaMoneda((Moneda) item, 0, 0, 10));
                 }
             }
         }
@@ -62,23 +68,50 @@ public class PanelDeposito extends JPanel {
     }
 
     public void actualizarPosiciones() {
-        int espacio=-30;
-        
-        for (int i = 0; i < vistas.size(); i++) {
-            PosicionDibujo vista = vistas.get(i);
-            int nuevoX = xBase;
-            int nuevoY = yBase;
+        if (tipoElemento == 3) {
+
+            int numColumnas = 11; 
+            int anchoColumna = 5; 
+            int altoMoneda = 6;  
+            int centroColumna = numColumnas / 2; 
+
             
-            if (esVertical) {
-                nuevoY += i * (vista.getHeight() + espacio); 
-            } else {
-                nuevoX += i * (vista.getWidth() + espacio); 
+            int[] conteoPorColumna = new int[numColumnas];
+
+            for (int i = 0; i < vistas.size(); i++) {
+                PosicionDibujo vista = vistas.get(i);
+                java.util.Random rand = new java.util.Random(12345 + i);
+                double gauss = rand.nextGaussian(); 
+                int offset = (int) Math.round(gauss * 1.8); 
+
+                int col = centroColumna + offset;
+                if (col < 0) col = 0;
+                if (col >= numColumnas) col = numColumnas - 1;
+                int nuevoX = xBase + (col * anchoColumna);
+                int nuevoY = yBase - (conteoPorColumna[col] * altoMoneda);
+                conteoPorColumna[col]++; 
+                vista.setXY(nuevoX, nuevoY);
             }
-            
-            vista.setXY(nuevoX, nuevoY); 
         }
-        this.revalidate();
-        this.repaint();
+        else {
+            int espacio = (tipoElemento == 1) ? -22 : -35;
+            
+            for (int i = 0; i < vistas.size(); i++) {
+                PosicionDibujo vista = vistas.get(i);
+                int nuevoX = xBase;
+                int nuevoY = yBase;
+                
+                if (esVertical) {
+                    nuevoY += i * (vista.getHeight() + espacio); 
+                } else {
+                    nuevoX += i * (vista.getWidth() + espacio); 
+                }
+                
+                vista.setXY(nuevoX, nuevoY); 
+            }
+            this.revalidate();
+            this.repaint();
+        }
     }
 
     @Override

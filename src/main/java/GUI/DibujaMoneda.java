@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class DibujaMoneda extends PosicionDibujo {
     private Moneda moneda;
-    public static final int diametro = 40;
+    private int diametro;
 
     /**
      * Se genera el ToolTip con la informacion toString de la moneda.
@@ -19,10 +19,13 @@ public class DibujaMoneda extends PosicionDibujo {
      * @param moneda Moneda de la parte logica.
      * @param x coordenada x donde se creara la moneda.
      * @param y coordenada y donde se creara la moneda.
+     * @param diametro diametro visual de la moneda.
      */
-    public DibujaMoneda (Moneda moneda, int x, int y){
+    public DibujaMoneda (Moneda moneda, int x, int y, int diametro){
         super(x,y);
         this.moneda = moneda;
+        this.diametro=diametro;
+        this.setSize(diametro, diametro);
         this.setBounds(x,y,diametro,diametro);
     }
 
@@ -40,7 +43,6 @@ public class DibujaMoneda extends PosicionDibujo {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int diametroDibujo= diametro - 2;
 
         int valor = moneda.getValor();
         if(valor==1000){
@@ -53,19 +55,28 @@ public class DibujaMoneda extends PosicionDibujo {
             g2d.setColor(new Color(191, 137, 48));
         }
 
-        g2d.fillOval(1, 1, diametroDibujo, diametroDibujo);
+        if (diametro >= 30) {
+            int diametroDibujo = diametro - 2;
+            g2d.fillOval(1, 1, diametroDibujo, diametroDibujo);
 
-        //Borde negro de la moneda
-        g2d.setColor(Color.BLACK);
-        g2d.drawOval(1, 1, diametroDibujo, diametroDibujo);
+            g2d.setColor(Color.BLACK);
+            g2d.drawOval(1, 1, diametroDibujo, diametroDibujo);
 
-        g2d.setFont(new Font("Arial", Font.BOLD, 10));
-        String valorStr = "$" + moneda.getValor();
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font("Arial", Font.BOLD, 10));
+            String valorStr = "$" + moneda.getValor();
+            FontMetrics fm = g2d.getFontMetrics();
+            int textX = (diametro - fm.stringWidth(valorStr))/2;
+            int textY = ((diametro - fm.getHeight())/2) + fm.getAscent();
+            g2d.drawString(valorStr, textX, textY);
 
-        FontMetrics fm = g2d.getFontMetrics();
-        int textX = (diametro - fm.stringWidth(valorStr))/2;
-        int textY = ((diametro - fm.getHeight())/2) + fm.getAscent();
-
-        g2d.drawString(valorStr, textX, textY);
+        } else {
+            int grosor=5;
+            
+            g2d.fillRoundRect(0, 0, diametro, grosor, 2, 2);
+    
+            g2d.setColor(new Color(40, 40, 40));
+            g2d.drawRoundRect(0, 0, diametro, grosor, 2, 2);
+        }
     }
 }
