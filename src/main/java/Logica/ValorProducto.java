@@ -12,7 +12,7 @@ public enum ValorProducto {
     /** Coca Cola, precio $300 */
     COCA(1,300),
     /** Sprite, precio $200 */
-    SPRITE(2,200),
+    SPRITE(2,100),
     /** Fanta, precio $200 */
     FANTA(3,200),
     /** Super8, precio $500 */
