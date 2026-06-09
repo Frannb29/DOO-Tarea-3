@@ -111,7 +111,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
                 JOptionPane.showMessageDialog(this,excepcion.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(x >= 70 && x <= 250 && y >= 470 && y <= 530) {
+        if(x >= 70 && x <= 250 && y >= 500 && y <= 560) {
             compLogica.retirarProducto(expLogica);
             String consumido = compLogica.queConsumiste();
             if(consumido!=null){
@@ -142,10 +142,10 @@ public class PanelPrincipal extends JPanel implements MouseListener{
             else if(mY >= 220 && mY <= 280){
                 estanteSeleccionado = exp.getPanelFanta();
             }
-            else if(mY >= 290 && mY <= 350){
+            else if(mY >= 290 && mY <= 360){
                 estanteSeleccionado = exp.getPanelSuper8();
             }
-            else if(mY >= 360 && mY <= 430){
+            else if(mY >= 360 && mY <= 450){
                 estanteSeleccionado = exp.getPanelSnickers();
             }
 
@@ -170,7 +170,7 @@ public class PanelPrincipal extends JPanel implements MouseListener{
         }
 
         //producto en deposito del vuelto
-        if(mX >= 70 && mX <= 250 && mY >= 470 && mY <= 530) {
+        if(mX >= 70 && mX <= 250 && mY >= 490 && mY <= 550) {
             Producto p = this.expLogica.revisaProductoComprado();
             if(p != null){
                 return "Serie: " + p.getSerie();
