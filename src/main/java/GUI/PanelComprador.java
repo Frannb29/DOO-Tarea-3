@@ -20,7 +20,7 @@ public class PanelComprador extends JPanel{
         panelMonedero=new PanelDeposito(expendedor,comprador.getMonedero(),x+20,y+100,false,2);
     }
     public void click(int clickX, int clickY){
-        if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 150 && clickY <= this.y + 190){
+        if(clickX >= this.x+20 && clickX<=this.x+140 && clickY>=this.y+150 && clickY<=this.y+190){
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
@@ -36,7 +36,7 @@ public class PanelComprador extends JPanel{
                 }
             }
         }
-        else if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 200 && clickY <= this.y + 240){
+        else if(clickX>=this.x+20 && clickX<=this.x+140 && clickY>=this.y+200 && clickY<=this.y+240){
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
@@ -52,7 +52,7 @@ public class PanelComprador extends JPanel{
                 }
             }
         }
-        else if(clickX >= this.x + 20 && clickX <= this.x + 140 && clickY >= this.y + 250 && clickY <= this.y + 290){
+        else if(clickX>=this.x+20 && clickX <= this.x+140 && clickY>=this.y+250 && clickY<=this.y+290){
             int tamaño=comprador.getMonedero().getSize();
             boolean encontrada=false;
             for(int i=0;i<tamaño;i++){
@@ -68,7 +68,19 @@ public class PanelComprador extends JPanel{
                 }
             }
         }
-        if (panelMonedero != null) {
+        else if(clickX>=this.x+150 && clickX<=this.x+230 && clickY>=this.y+150 && clickY<=this.y+190){
+            comprador.getMonedero().add(new Logica.Moneda100());
+            System.out.println("Se ha añadido una moneda de $100");
+        }
+        else if(clickX>=this.x+150 &&clickX<=this.x+230 && clickY>=this.y+200 && clickY<=this.y+240){
+            comprador.getMonedero().add(new Logica.Moneda500());
+            System.out.println("Se ha añadido una moneda de $500");
+        }
+        else if(clickX>=this.x+150 && clickX<=this.x+230 && clickY>=this.y+250 && clickY<=this.y+290){
+            comprador.getMonedero().add(new Logica.Moneda1000());
+            System.out.println("Se ha añadido una moneda de $1000");
+        }
+        if (panelMonedero!=null) {
             actualizarVisuales();
         }
     }
@@ -106,21 +118,37 @@ public class PanelComprador extends JPanel{
         g.fillRect(x-100,y+20,250,400);
 
         g.setColor(new Color(205, 127, 50));
-        g.fillRect(x + 20, y + 150, 120, 40);
+        g.fillRect(x+20, y+150, 120, 40);
         g.setColor(Color.BLACK);
         g.drawString("Seleccionar $100", x + 35, y + 175);
 
         g.setColor(new Color(192, 192, 192));
-        g.fillRect(x + 20, y + 200, 120, 40);
+        g.fillRect(x+20, y+200, 120, 40);
         g.setColor(Color.BLACK);
         g.drawString("Seleccionar $500", x + 35, y + 225);
 
         g.setColor(new Color(255, 215, 0));
-        g.fillRect(x + 20, y + 250, 120, 40);
+        g.fillRect(x+20, y+250, 120, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Seleccionar $1000", x + 30, y + 275);
+        g.drawString("Seleccionar $1000", x+30, y+275);
 
-        if (panelMonedero != null) {
+        g.setColor(new Color(46, 204, 113));
+
+        g.fillRect(x + 150, y + 150, 80, 40);
+        g.setColor(Color.BLACK);
+        g.drawString("+$100", x+165, y+175);
+
+        g.setColor(new Color(46, 204, 113));
+        g.fillRect(x + 150, y+200, 80, 40);
+        g.setColor(Color.BLACK);
+        g.drawString("+$500", x+165, y+225);
+
+        g.setColor(new Color(46, 204, 113));
+        g.fillRect(x+150, y+250, 80, 40);
+        g.setColor(Color.BLACK);
+        g.drawString("+$1000", x+160, y+275);
+
+        if (panelMonedero!=null) {
             panelMonedero.paintComponent(g);
         }
     }
