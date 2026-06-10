@@ -1,16 +1,18 @@
+import javax.swing.*;
 import GUI.*;
-import Logica.*;
 
-import javax.swing.JFrame;
-
-public class MainGUIPrincipal {
-    public static void main(String[] args) {
-        PanelPrincipal panel = new PanelPrincipal();
-        JFrame frame = new JFrame("Expendedor");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 600);
-        frame.add(panel);
-        frame.setVisible(true);
-        
+public class MainGUIPrincipal extends JFrame{
+    PanelPrincipal panel;
+    public MainGUIPrincipal(){
+        this.setTitle("Maquina Expendedora");
+        this.setSize(1280,720);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel=new PanelPrincipal();
+        this.add(panel);
+        this.setVisible(true);
+    }
+    public static void main(String[] args){
+        MainGUIPrincipal main = new MainGUIPrincipal();
     }
 }
